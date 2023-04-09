@@ -14,21 +14,25 @@ T_STEP = T_ON + T_OFF
 T_CR = 4 * T_STEP
 T_JITTER = T_STEP * (JITTER / 100) / 2
 
-PATTERNS = list(adafruit_itertools.permutations(range(4)))
+PATTERNS_LEFT = list(adafruit_itertools.permutations(range(0, 4)))
+PATTERNS_RIGHT = list(adafruit_itertools.permutations(range(4, 8)))
 
-def finger_on(finger):
-  drivers[finger].mode = adafruit_drv2605.MODE_REALTIME
+def random_sequence():
+  return zip(random.choice(PATTERNS_LEFT), random.choice(PATTERNS_RIGHT))
 
-def finger_off(finger):
-  drivers[finger].mode = adafruit_drv2605.MODE_INTTRIG
-
-def buzz_sequence(fingers):
+def fingers_on(fingers):
   for finger in fingers:
-    finger_on(finger)
-    finger_on(finger + 4)
+    drivers[finger].mode = adafruit_drv2605.MODE_REALTIME
+
+def fingers_off(fingers):
+  for finger in fingers:
+    drivers[finger].mode = adafruit_drv2605.MODE_INTTRIG
+
+def buzz_sequence(sequence):
+  for fingers in sequence:
+    fingers_on(fingers)
     time.sleep(T_ON)
-    finger_off(finger)
-    finger_off(finger + 4)
+    fingers_off(fingers)
     time.sleep(T_OFF + random.uniform(-T_JITTER, T_JITTER))
 
 i2c = board.STEMMA_I2C()
@@ -40,8 +44,8 @@ for d in drivers:
   d.realtime_value = AMPLITUDE
 
 while True:
-  buzz_sequence(random.choice(PATTERNS))
-  buzz_sequence(random.choice(PATTERNS))
-  buzz_sequence(random.choice(PATTERNS))
+  buzz_sequence(random_sequence())
+  buzz_sequence(random_sequence())
+  buzz_sequence(random_sequence())
   time.sleep(T_CR)
   time.sleep(T_CR)
