@@ -3,7 +3,7 @@ A simple, easy-to-assemble vibrotactile coordinated reset (vCR) device for Parki
 
 ## Background
 
-"Vibrotactile coordinated reset" (vCR) is a novel treatment for symptoms of Parkinson's disease. It involves stimulating the fingertips of both hands with patterns of brief, mild vibration. Early research results are encouraging, and have made headlines around the world. Since the patterns of vibrations and other details about the vCR devices are documented, many in the P.D. community are experimenting with DIY versions.
+"Vibrotactile coordinated reset" (vCR) is a novel treatment for symptoms of Parkinson's disease. It involves stimulating the fingertips of both hands with patterns of brief, mild vibration. Early research results are encouraging, and have made headlines around the world. Since some details about the hardware and the patterns of vibration are documented, many in the P.D. community are experimenting with DIY versions.
 
 ## What is Buzzah!?
 
