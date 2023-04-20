@@ -65,7 +65,7 @@ To make the assembled parts do something useful, a tiny program ("firmware") mus
 
 - Visit [this page](https://circuitpython.org/board/adafruit_qtpy_rp2040/) and DOWNLOAD the latest "stable" release. 
 - Plug the microcontroller into your computer.
-- On the microcontroller, there are TWO very tiny buttons. HOLD DOWN the button CLOSEST to the USB port.
+- On the microcontroller, there are TWO very tiny buttons. HOLD the button CLOSEST to the USB port.
 - WHILE HOLDING the first button, press and release the other button.
 - CONTINUE TO HOLD the first button until your computer recognizes a new USB drive called "RPI-RP2".
 - RELEASE the first button.
@@ -85,7 +85,7 @@ As soon as you copy `code.py` to the USB drive (and assuming all your connection
 
 That's it! You no longer need to connect to a computer to use the device...simply plug it into a USB power source. If a new version of the Buzzah! firmware is released, you need only replace the `code.py` file on the CIRCUITPY drive. It will automatically take effect.
 
-In the future, I'll add details about customizing the behaviour of the device by editing `code.py`. Until then, feel free to look at it yourself. It's only a handful of lines of CircuitPython code and, even for a beginner, is quite readable.
+In the future, I'll add details about customizing the behaviour of the device by editing `code.py`. Until then, feel free to look at it yourself. It's only a handful of lines of CircuitPython code and, even for a beginner, is quite readable. The values that you'd most likely want to configure are all near the top of the file and are generally self-explanatory.
 
 ## Attribution
 
