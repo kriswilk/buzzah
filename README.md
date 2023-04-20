@@ -7,7 +7,7 @@ A simple, easy-to-assemble vibrotactile coordinated reset (vCR) device for Parki
 
 ## What is Buzzah!?
 
-Many DIY implementations require technical proficiency: wiring, soldering small components, software installation, programming, etc. These requirements are substantial barriers to entry for non-technical users. The device presented here prioritizes ease of assembly/setup over size/cost, eliminating most of the technical hurdles.
+Many DIY implementations require technical proficiency: wiring, soldering small components, software installation, programming, etc. These requirements are substantial barriers to entry for non-technical users. The device presented here prioritizes ease of assembly/setup over size/cost, eliminating most of the technical hurdles. It does this while also using more precise vibration actuators than most existing DIY options.
 
 Buzzah! is:
 
@@ -18,7 +18,7 @@ Buzzah! is:
 
 ## Limitations
 
-This is a work in progress, and only includes an electronics/firmware design. Adapting the device into a set of gloves, a "buzz board", or other physical form is up to the user. Those considerations are more personal and less technical...and definitely not my area of expertise.
+This is a work in progress, and only represents an electronics/firmware design. Adapting the device into a set of gloves, a "buzz board", or other physical form is up to the user. Those considerations are more personal and less technical...and definitely not my area of expertise.
 
 ## Parts
 
