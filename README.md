@@ -1,5 +1,5 @@
 # Buzzah!
-A simple and easy-to-build vibrotactile coordinated reset (vCR) device for Parkinson's disease sufferers.
+A simple, easy-to-assemble vibrotactile coordinated reset (vCR) device for Parkinson's disease sufferers.
 
 ## Background
 
