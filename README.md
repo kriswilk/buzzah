@@ -75,7 +75,7 @@ The "RPI-RP2" drive should disappear and a new drive called "CIRCUITPY" should a
 
 ### Load the Firmware
 
-- Download and unzip the [latest release](https://github.com/kriswilk/buzzah/releases/latest) of the Buzzah! archive.
+- Download and unzip the [latest release](https://github.com/kriswilk/buzzah/archive/refs/heads/main.zip) of the Buzzah! archive.
 - Copy the `lib` folder to the CIRCUITPY drive, overwriting any existing files.
 - Copy the `code.py` to the CIRCUITPY drive, overwriting the existing file.
 
