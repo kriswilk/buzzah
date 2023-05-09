@@ -22,11 +22,13 @@ def random_sequence():
 
 def fingers_on(fingers):
   for finger in fingers:
-    drivers[finger].mode = adafruit_drv2605.MODE_REALTIME
+    if drivers[finger]:
+      drivers[finger].mode = adafruit_drv2605.MODE_REALTIME
 
 def fingers_off(fingers):
   for finger in fingers:
-    drivers[finger].mode = adafruit_drv2605.MODE_INTTRIG
+    if drivers[finger]:
+      drivers[finger].mode = adafruit_drv2605.MODE_INTTRIG
 
 def buzz_sequence(sequence):
   for fingers in sequence:
@@ -37,11 +39,18 @@ def buzz_sequence(sequence):
 
 i2c = board.STEMMA_I2C()
 mux = adafruit_tca9548a.TCA9548A(i2c)
-drivers = [adafruit_drv2605.DRV2605(port) for port in mux]
 
-for d in drivers:
-  d.use_LRM()
-  d.realtime_value = AMPLITUDE
+drivers = []
+for port in mux:
+  try:
+    drivers.append(adafruit_drv2605.DRV2605(port))
+  except ValueError:
+    drivers.append(False)
+
+for driver in drivers:
+  if driver:
+    driver.use_LRM()
+    driver.realtime_value = AMPLITUDE
 
 while True:
   buzz_sequence(random_sequence())
