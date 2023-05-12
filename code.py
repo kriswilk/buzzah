@@ -71,26 +71,24 @@ for port in mux:
 for driver in drivers:
   if driver:
     # set actuator type
-    feedback = driver._read_u8(0x1A)
     if ACTUATOR_TYPE == "LRA":
-      feedback |= 0x80
+      driver.use_LRM()
     else:
-      feedback &= 0x7F
-    driver._write_u8(0x1A, feedback)
-
-    # run both ERM and LRA in open-loop mode
+      driver.use_ERM()
+    
+    # set open-loop mode (both ERM & LRA)
     control3 = driver._read_u8(0x1D)
     driver._write_u8(0x1D, control3 | 0x21)
 
-    # set OL_CLAMP voltage
+    # set peak voltage
     driver._write_u8(0x17, int(ACTUATOR_VOLTAGE / 0.02122))
 
     # set driving frequency
     driver._write_u8(0x20, int(1 / (ACTUATOR_FREQUENCY * 0.00009849)))
 
     # set initial output amplitude and activate RTP mode
-    driver._write_u8(0x02, 0x00)
-    driver._write_u8(0x01, 0x05)    
+    driver.realtime_value = 0
+    driver.mode = adafruit_drv2605.MODE_REALTIME
 
 while True:
   buzz_sequence(random_sequence())
