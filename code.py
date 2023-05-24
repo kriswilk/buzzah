@@ -21,8 +21,9 @@ ACTUATOR_FREQUENCY = 235
 COORDINATED RESET PARAMETERS: These are based on the published research. You are
 free to change them to alter the behaviour of the device.
 """
-# Vibration amplitude, in % (reduce if the vibration is too intense)
-AMPLITUDE = 100
+# Vibration amplitude range, in %
+AMPLITUDE_MIN = 100
+AMPLITUDE_MAX = 100
 # Duration of each vibration and subsequent pause, each in s
 TIME_ON = 0.100
 TIME_OFF = 0.067
@@ -34,7 +35,7 @@ JITTER = 23.5
 ### DO NOT EDIT BELOW THIS LINE UNLESS YOU KNOW WHAT YOU'RE DOING ###
 
 # Precomputed data
-T_JITTER = (TIME_ON + TIME_OFF) * (JITTER / 100) / 2
+TIME_JITTER = (TIME_ON + TIME_OFF) * (JITTER / 100) / 2
 PATTERNS_LEFT = list(adafruit_itertools.permutations(range(0, 4)))
 PATTERNS_RIGHT = list(adafruit_itertools.permutations(range(4, 8)))
 
@@ -44,7 +45,7 @@ def random_sequence():
 def fingers_on(fingers):
   for finger in fingers:
     if drivers[finger]:
-      drivers[finger].realtime_value = AMPLITUDE
+      drivers[finger].realtime_value = random.randint(AMPLITUDE_MIN, AMPLITUDE_MAX)
 
 def fingers_off(fingers):
   for finger in fingers:
@@ -56,7 +57,7 @@ def buzz_sequence(sequence):
     fingers_on(fingers)
     time.sleep(TIME_ON)
     fingers_off(fingers)
-    time.sleep(TIME_OFF + random.uniform(-T_JITTER, T_JITTER))
+    time.sleep(TIME_OFF + random.uniform(-TIME_JITTER, TIME_JITTER))
 
 i2c = board.STEMMA_I2C()
 mux = adafruit_tca9548a.TCA9548A(i2c)
