@@ -31,6 +31,8 @@ TIME_OFF = 0.067
 TIME_RELAX = 4 * (TIME_ON + TIME_OFF)
 # Jitter, in %
 JITTER = 23.5
+# Mirror left / right hand vibration patterns
+MIRROR = False
 
 ### DO NOT EDIT BELOW THIS LINE UNLESS YOU KNOW WHAT YOU'RE DOING ###
 
@@ -40,7 +42,12 @@ PATTERNS_LEFT = list(adafruit_itertools.permutations(range(0, 4)))
 PATTERNS_RIGHT = list(adafruit_itertools.permutations(range(4, 8)))
 
 def random_sequence():
-  return zip(random.choice(PATTERNS_LEFT), random.choice(PATTERNS_RIGHT))
+  pattern_left = random.choice(PATTERNS_LEFT)
+  if MIRROR:
+    pattern_right = [x+4 for x in pattern_left]
+  else:
+    pattern_right = random.choice(PATTERNS_RIGHT)
+  return zip(pattern_left, pattern_right)
 
 def fingers_on(fingers):
   for finger in fingers:
