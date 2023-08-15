@@ -24,20 +24,23 @@ free to change them to alter the behaviour of the device.
 # Vibration amplitude range, in %
 AMPLITUDE_MIN = 100
 AMPLITUDE_MAX = 100
-# Duration of each vibration and subsequent pause, each in s
+# Duration of each vibration and subsequent pause, each in seconds
 TIME_ON = 0.100
 TIME_OFF = 0.067
-# Duration of the relaxation period between sets of vibrations, in s
+# Duration of the relaxation period between sets of vibrations, in seconds
 TIME_RELAX = 4 * (TIME_ON + TIME_OFF)
 # Jitter, in %
 JITTER = 23.5
 # Mirror left / right hand vibration patterns
 MIRROR = False
+# Duration of the therapy session, in minutes
+TIME_SESSION = 120
 
 ### DO NOT EDIT BELOW THIS LINE UNLESS YOU KNOW WHAT YOU'RE DOING ###
 
 # Precomputed data
 TIME_JITTER = (TIME_ON + TIME_OFF) * (JITTER / 100) / 2
+TIME_END = time.time() + 60 * TIME_SESSION
 PATTERNS_LEFT = list(adafruit_itertools.permutations(range(0, 4)))
 PATTERNS_RIGHT = list(adafruit_itertools.permutations(range(4, 8)))
 
@@ -98,7 +101,7 @@ for driver in drivers:
     driver.realtime_value = 0
     driver.mode = adafruit_drv2605.MODE_REALTIME
 
-while True:
+while time.time() < TIME_END:
   buzz_sequence(random_sequence())
   buzz_sequence(random_sequence())
   buzz_sequence(random_sequence())
